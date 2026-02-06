@@ -293,6 +293,39 @@ function checkAbuse(message) {
 if(localStorage.getItem('isBanned') === 'true') {
     document.body.innerHTML = "<h1 style='color:red; text-align:center;'>DEVICE PERMANENTLY BANNED</h1>";
 }
+// User ka data structure
+let userData = {
+    name: "Muhammad User",
+    level: 1,
+    giftPoints: 0,
+    diamonds: 0,
+    coins: 0,
+    tag: "Newbie"
+};
+
+// Gift bhejne par points barhane ka automated system
+function sendGift(giftValue) {
+    userData.giftPoints += giftValue;
+    
+    // Automatic Tag Check
+    if (userData.giftPoints >= 1000 && userData.tag !== "Top Gifter") {
+        userData.tag = "Top Gifter";
+        userData.level += 5; // Reward as level up
+        updateProfileUI();
+        saveDataToCloud(); // Automatic Save
+        alert("🎉 SYSTEM: Aapka 'Top Gifter' Tag Unlock ho gaya!");
+    }
+}
+
+// UI ko update karne ka system
+function updateProfileUI() {
+    document.getElementById('display-name').innerHTML = `
+        ${userData.name} 
+        ${userData.giftPoints >= 1000 ? '<span class="gifter-tag-1k">💎 TOP GIFTER</span>' : ''}
+    `;
+    // Level dikhane ke liye
+    console.log("Current Level: " + userData.level);
+}
 
 
 
