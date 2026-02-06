@@ -153,3 +153,33 @@ function openClub() {
         container.appendChild(btn);
     }
             }
+// script.js ki sabse aakhri line ke baad ye add karein
+let coins = 0;
+let diamonds = 0;
+
+// Showroom kholne ke liye function
+function showStore() {
+    document.getElementById('showroom-menu').style.display = 'block';
+}
+
+// Purchase process karne ke liye
+function processPurchase(item, price) {
+    let confirmPay = confirm("Confirm Purchase: " + item + " for Rs." + price + "?");
+    if(confirmPay) {
+        if(item.includes("Coins")) {
+            let val = item.includes("100k") ? 100000 : 10000;
+            coins += val;
+            alert("Success! " + val + " Coins added to your account.");
+        } else {
+            diamonds += 200;
+            alert("Success! 200 Diamonds added to your account.");
+        }
+        
+        // UI Update
+        if(document.getElementById('user-coins')) {
+            document.getElementById('user-coins').innerHTML = "Coins: " + coins + " | Diamonds: " + diamonds;
+        }
+        document.getElementById('showroom-menu').style.display = 'none';
+    }
+}
+
