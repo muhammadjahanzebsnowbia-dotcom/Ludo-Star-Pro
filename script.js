@@ -442,6 +442,39 @@ function checkLoginState() {
 
 // Page load par system activate karein
 window.addEventListener('load', checkLoginState);
+// ==========================================
+// GLOBAL SULTAN: COUNTRY & FLAG SYSTEM
+// ==========================================
+
+async function setGlobalSultanProfile() {
+    try {
+        // User ka Mulk (Country) dhoondne ke liye API
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+
+        const country = data.country_name;
+        const countryCode = data.country_code.toLowerCase();
+        const flagUrl = `https://flagcdn.com/w40/${countryCode}.png`;
+
+        // Profile mein Jhanda aur Mulk ka naam dikhana
+        if(document.getElementById('user-name')) {
+            let nameSpan = document.getElementById('user-name');
+            nameSpan.innerHTML += ` <img src="${flagUrl}" title="${country}" style="width:20px; vertical-align:middle; border-radius:2px; margin-left:5px;">`;
+        }
+        
+        // Data save karein taaki database mein bhi jaye
+        localStorage.setItem('sultan_country', country);
+        localStorage.setItem('sultan_flag', flagUrl);
+
+        console.log("Sultan Global Info: Connected from " + country);
+    } catch (error) {
+        console.log("Location error: Shayad internet ya VPN ka masla hai.");
+    }
+}
+
+// Page load hote hi location check karein
+window.addEventListener('load', setGlobalSultanProfile);
+
 
 
 
