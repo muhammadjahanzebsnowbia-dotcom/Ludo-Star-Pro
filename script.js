@@ -114,3 +114,42 @@ function sendGift(gift, cost) {
     }
 }
 
+// script.js ki sabse aakhri line ke niche ye add karein
+
+// 1. Coins Purchase Function
+function showStore() {
+    let confirmBuy = confirm("Kya aap 5000 Coins purchase karna chahte hain?");
+    if(confirmBuy) {
+        coins += 5000;
+        alert("Purchase Successful! Naya Balance: " + coins);
+        if(document.getElementById('user-coins')) {
+            document.getElementById('user-coins').innerHTML = "Coins: " + coins;
+        }
+    }
+}
+
+// 2. Mic Locking Logic (Level 1 = 5 Mics, Level 11 = 10 Mics)
+function openClub() {
+    document.getElementById('audio-room').style.display = 'block';
+    let container = document.getElementById('mic-container');
+    container.innerHTML = ""; 
+
+    let totalMics = (userLevel >= 11) ? 10 : 5;
+
+    for (let i = 1; i <= 10; i++) {
+        let isUnlocked = (i <= totalMics);
+        let btn = document.createElement("button");
+        btn.innerHTML = (isUnlocked ? "🎙️" : "🔒") + "<br>Mic " + i;
+        btn.style.background = isUnlocked ? "#2ecc71" : "#444";
+        btn.style.color = "white";
+        btn.style.padding = "8px";
+        btn.style.borderRadius = "8px";
+        btn.style.border = "1px solid #777";
+
+        btn.onclick = function() {
+            if(isUnlocked) alert("Mic " + i + " Connected! Aap baat kar sakte hain.");
+            else alert("🔒 Yeh Mic Level 11 par unlock hoga!");
+        };
+        container.appendChild(btn);
+    }
+            }
