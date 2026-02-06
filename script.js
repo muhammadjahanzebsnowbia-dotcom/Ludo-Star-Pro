@@ -1,3 +1,27 @@
+// Level system shuru mein 1 hoga
+let userLevel = 1; 
+
+// Level check karne wala function
+function openClub() {
+    if (userLevel < 10) {
+        alert("🔒 Yeh feature Level 10 par unlock hoga! Abhi aapka level " + userLevel + " hai.");
+    } 
+    else if (userLevel >= 10 && userLevel < 15) {
+        alert("🎙️ Level 10 ka Audio Room Open! (Lekin 15 Level wala Mic abhi lock hai)");
+        // Yahan Level 10 wala audio logic aayega
+    }
+    else if (userLevel >= 15) {
+        alert("👑 Mubarak ho! Level 15 Unlock! Ab aap Pro Mic aur saare Audio Rooms use kar sakte hain.");
+        // Yahan Level 15 ka advanced audio logic aayega
+    }
+}
+
+// Level badhane ke liye (misal ke taur par har roll par experience milega)
+function increaseLevel() {
+    userLevel++;
+    console.log("Aapka naya level: " + userLevel);
+}
+
 // 1. Guest Play (Offline) Mode
 function startGuest() {
     document.getElementById('main-menu').style.display = 'none';
