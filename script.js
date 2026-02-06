@@ -122,4 +122,54 @@ function finalizePurchase() {
 window.onload = function() {
     applySultanDiscount();
 };
+// ==========================================
+// ADVANCED SULTAN CHAT SYSTEM (APPEND TO END)
+// ==========================================
+
+function sendSultanMessage() {
+    let input = document.getElementById('chat-in');
+    let chatBox = document.getElementById('chat-box');
+    let msgText = input.value.trim();
+
+    if (msgText === "") return;
+
+    // 1. Create Message Element
+    let messageDiv = document.createElement('div');
+    messageDiv.style.marginBottom = "8px";
+    messageDiv.style.padding = "5px 10px";
+    messageDiv.style.borderRadius = "8px";
+    messageDiv.style.fontSize = "13px";
+    messageDiv.style.width = "fit-content";
+    messageDiv.style.maxWidth = "80%";
+
+    // 2. Check if User is a VIP (Top Gifter)
+    let isVIP = totalGiftingPoints >= 1000;
+
+    if (isVIP) {
+        // Shahi (VIP) Message Style
+        messageDiv.style.background = "linear-gradient(45deg, #4b0082, #800080)";
+        messageDiv.style.borderLeft = "3px solid gold";
+        messageDiv.style.boxShadow = "0 0 8px rgba(255, 215, 0, 0.4)";
+        messageDiv.innerHTML = `<span style="color:gold; font-weight:bold;">👑 Sultan:</span> <span style="color:white;">${msgText}</span>`;
+    } else {
+        // Normal Message Style
+        messageDiv.style.background = "rgba(255,255,255,0.1)";
+        messageDiv.innerHTML = `<span style="color:#aaa; font-weight:bold;">Member:</span> <span style="color:#eee;">${msgText}</span>`;
+    }
+
+    // 3. Add to Chat Box & Auto-Scroll
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    // 4. Clear Input
+    input.value = "";
+}
+
+// Enter Key se Message bhejne ka system
+document.getElementById('chat-in').addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        sendSultanMessage();
+    }
+});
+
 
