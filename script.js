@@ -360,6 +360,88 @@ function showOfficialTools() {
 
 // Check karein aur button dikhayein
 showOfficialTools();
+// ==========================================
+// FINAL FACEBOOK LOGIN & ACCESS CONTROL
+// ==========================================
+
+// 1. Facebook SDK Setup
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+window.fbAsyncInit = function() {
+    FB.init({
+        appId      : 'YOUR_FB_APP_ID', // Yahan apni App ID lagayein
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v18.0'
+    });
+    checkLoginState();
+};
+
+// 2. Login Function (Mandatory for Game/Clubs)
+function loginWithFacebook() {
+    FB.login(function(response) {
+        if (response.status === 'connected') {
+            FB.api('/me', {fields: 'name,picture.type(large)'}, function(user) {
+                // DP sirf Facebook se aayegi
+                localStorage.setItem('sultan_dp', user.picture.data.url);
+                document.getElementById('user-dp').src = user.picture.data.url;
+
+                // Naam agar pehle se set nahi hai to FB wala utha lo
+                if (!localStorage.getItem('sultan_custom_name')) {
+                    localStorage.setItem('sultan_custom_name', user.name);
+                    document.getElementById('user-name').innerText = user.name;
+                }
+
+                localStorage.setItem('sultan_session', 'active');
+                alert("Sultan " + user.name + "! Login Safal Raha. Ab aap khel sakte hain.");
+                
+                // Game Unlock karein
+                unlockSultanFeatures();
+            });
+        }
+    }, {scope: 'public_profile'});
+}
+
+// 3. Lock/Unlock System
+function unlockSultanFeatures() {
+    let session = localStorage.getItem('sultan_session');
+    let buttons = document.querySelectorAll('.mode-card, .mic-slot, #gift-btn');
+    
+    if (session === 'active') {
+        buttons.forEach(b => {
+            b.style.opacity = "1";
+            b.style.pointerEvents = "auto";
+        });
+        if(document.getElementById('fb-login-btn')) {
+            document.getElementById('fb-login-btn').style.display = 'none';
+        }
+    } else {
+        buttons.forEach(b => {
+            b.style.opacity = "0.4";
+            b.style.pointerEvents = "none";
+        });
+    }
+}
+
+// 4. Initial Load par check karein
+function checkLoginState() {
+    unlockSultanFeatures();
+    
+    let savedName = localStorage.getItem('sultan_custom_name');
+    let savedDP = localStorage.getItem('sultan_dp');
+    
+    if (savedName) document.getElementById('user-name').innerText = savedName;
+    if (savedDP) document.getElementById('user-dp').src = savedDP;
+}
+
+// Page load par system activate karein
+window.addEventListener('load', checkLoginState);
 
 
 
