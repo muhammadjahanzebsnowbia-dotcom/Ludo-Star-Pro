@@ -112,5 +112,50 @@
         </div>
 
         <div style="background:rgba(255,255,2
+                                    <div id="mega-store" style="display:none; position: fixed; top: 5%; left: 5%; width: 90%; height: 85%; background: linear-gradient(180deg, #0f0c29, #302b63); border: 3px solid gold; border-radius: 20px; z-index: 5000; padding: 15px; color: white; overflow-y: auto;">
+    <h2 style="text-align:center; color:gold; text-shadow: 0 0 10px gold;">🏆 LUDO OFFICIAL STORE 🏆</h2>
+    <hr style="border: 0.5px solid gold;">
+
+    <div style="background: linear-gradient(45deg, #4b0082, #000); padding: 15px; border-radius: 15px; border: 2px solid gold; margin-bottom: 20px; text-align: center;">
+        <h3 style="color:gold; margin:0;">👑 ELITE VIP PACK</h3>
+        <p style="margin:5px 0; color:cyan;">110k Diamonds + 20M Coins</p>
+        <button onclick="openPayment(110000, 20000000, 65000)" style="background:gold; color:black; border:none; padding:10px 25px; border-radius:10px; font-weight:bold; cursor:pointer;">Rs. 65,000</button>
+    </div>
+
+    <div id="package-list-container" style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="background:rgba(255,255,255,0.1); padding:10px; border-radius:10px; display:flex; justify-content:space-between; align-items:center;">
+            <span>💎 50k Diamonds + 5M Coins</span>
+            <button onclick="openPayment(50000, 5000000, 30000)" style="background:#2ecc71; color:white; border:none; padding:8px; border-radius:5px;">Rs. 30,000</button>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); padding:10px; border-radius:10px; display:flex; justify-content:space-between; align-items:center;">
+            <span>💎 400 Diamonds + 10k Coins</span>
+            <button onclick="openPayment(400, 10000, 270)" style="background:#2ecc71; color:white; border:none; padding:8px; border-radius:5px;">Rs. 270</button>
+        </div>
+    </div>
+
+    <button onclick="document.getElementById('mega-store').style.display='none'" style="width:100%; background:red; color:white; border:none; padding:12px; margin-top:15px; border-radius:10px; font-weight:bold;">BACK TO LUDO</button>
+</div>
+
+<style>
+    .official-badge {
+        background: linear-gradient(45deg, #FFD700, #FFA500);
+        color: black;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-left: 5px;
+        box-shadow: 0 0 5px gold;
+    }
+    .admin-frame {
+        border: 3px solid gold !important;
+        animation: glow 1.5s infinite alternate;
+    }
+    @keyframes glow {
+        from { box-shadow: 0 0 5px gold; }
+        to { box-shadow: 0 0 20px #FFD700; }
+    }
+</style>
+        
                                     
 
