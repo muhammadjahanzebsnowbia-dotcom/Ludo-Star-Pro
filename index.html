@@ -3,32 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ludo Star Pro - Rooms</title>
+    <title>Ludo Star Pro - Menu</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="room-box" style="text-align:center; background:#111; padding:15px; border-bottom:3px solid gold;">
-        <h3 style="color:gold; margin:0;">LUDO MULTIPLAYER</h3>
-        <input type="text" id="roomId" placeholder="Enter Room Code" style="margin:10px; padding:5px;">
-        <button onclick="createRoom()" style="background:gold; font-weight:bold; padding:5px 15px;">JOIN ROOM</button>
-        <p id="status" style="color:white; font-size:12px;">Status: Offline</p>
+    <div id="main-menu" style="text-align: center; background: #1a1a2e; padding: 20px; color: gold; border: 3px solid gold;">
+        <h1>LUDO STAR PRO</h1>
+        <p>Khelne ka tareeka chunein:</p>
+        <button onclick="startGuest()" style="padding: 15px; margin: 10px; background: #2ecc71; color: white; font-weight: bold; width: 80%;">GUEST PLAY (Offline)</button>
+        <br>
+        <button onclick="showRoomBox()" style="padding: 15px; margin: 10px; background: #1e90ff; color: white; font-weight: bold; width: 80%;">ONLINE ROOMS</button>
     </div>
 
-    <div class="game-container">
-        <div class="ludo-board" id="ludo-board" style="border: 8px solid gold; margin: 20px auto; transition: 0.3s;">
+    <div id="room-box" style="display:none; text-align:center; background:#111; padding:15px; border-bottom:3px solid gold;">
+        <h3 style="color:gold;">ENTER ROOM CODE</h3>
+        <input type="text" id="roomId" placeholder="Code Likhein">
+        <button onclick="createRoom()" style="background:gold; padding:5px 10px;">JOIN</button>
+        <button onclick="backToMenu()" style="background:red; color:white;">BACK</button>
+    </div>
+
+    <div id="game-area" style="display:none;">
+        <div class="ludo-board" id="ludo-board" style="border: 8px solid gold; margin: 20px auto;">
             <div class="house red"></div>
             <div class="house green"></div>
             <div class="house yellow"></div>
             <div class="house blue"></div>
             <div class="center-square">LUDO</div>
         </div>
-        
         <div class="dice-section" style="text-align:center;">
             <button id="dice-btn" onclick="roll()">🎲 ROLL</button>
-            <p id="result" style="color:white; font-size:18px;"></p>
+            <p id="result" style="color:white;"></p>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+
