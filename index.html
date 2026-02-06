@@ -41,4 +41,23 @@
     <script src="script.js"></script>
 </body>
 </html>
+<div id="social-features" style="margin-top: 20px;">
+    
+    <div id="gift-panel" style="display:none; text-align:center; background: rgba(0,0,0,0.8); padding: 10px; border-radius: 10px; border: 1px solid gold;">
+        <h4 style="color:pink; margin: 5px;">🎁 Send a Gift</h4>
+        <div style="display: flex; justify-content: space-around;">
+            <button onclick="sendGift('🌹', 100)" style="background:none; border:1px solid gold; color:white; padding: 5px;">🌹<br>100</button>
+            <button onclick="sendGift('💎', 500)" style="background:none; border:1px solid gold; color:white; padding: 5px;">💎<br>500</button>
+            <button onclick="sendGift('🚗', 2000)" style="background:none; border:1px solid gold; color:white; padding: 5px;">🚗<br>2k</button>
+        </div>
+        <p id="user-coins" style="color:gold; font-size: 14px; margin-top:5px;">Coins: 5000</p>
+    </div>
+
+    <div id="audio-room" style="display:none; text-align:center; background:#222; padding:10px; margin-top:10px; border:2px solid #8e44ad; border-radius: 10px;">
+        <h4 style="color:#9b59b6; margin: 5px;">🎙️ AUDIO ROOM</h4>
+        <div id="mic-container" style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+            </div>
+    </div>
+
+</div>
 
