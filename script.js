@@ -1,42 +1,37 @@
-// Game Variables
-let currentTurn = 'red'; 
-let rooms = {};
+// 1. Guest Play (Offline) Mode
+function startGuest() {
+    document.getElementById('main-menu').style.display = 'none';
+    document.getElementById('game-area').style.display = 'block';
+    document.getElementById('result').innerHTML = "Mode: Guest Play";
+}
 
-// Room Banane ka Function
+// 2. Room Menu dikhane ke liye
+function showRoomBox() {
+    document.getElementById('main-menu').style.display = 'none';
+    document.getElementById('room-box').style.display = 'block';
+}
+
+// 3. Wapas Menu par jaane ke liye
+function backToMenu() {
+    document.getElementById('room-box').style.display = 'none';
+    document.getElementById('game-area').style.display = 'none';
+    document.getElementById('main-menu').style.display = 'block';
+}
+
+// 4. Room Join karne ke baad game shuru karna
 function createRoom() {
     let id = document.getElementById('roomId').value;
     if(id === "") {
         alert("Pehle koi Room Code likhein!");
     } else {
-        document.getElementById('status').innerHTML = "Status: Connected to Room " + id;
-        document.getElementById('status').style.color = "#2ed573";
-        alert("Room " + id + " tayyar hai!");
+        document.getElementById('room-box').style.display = 'none';
+        document.getElementById('game-area').style.display = 'block';
+        document.getElementById('result').innerHTML = "Status: Connected to Room " + id;
     }
 }
 
-// Gitta (Dice) aur Turn Cursor Logic
+// 5. Gitta (Dice) Roll karna
 function roll() {
-    let result = document.getElementById('result');
-    let board = document.getElementById('ludo-board');
-    
-    let number = Math.floor(Math.random() * 6) + 1;
-    result.innerHTML = "🎲 " + number;
-
-    // Cursor Movement: Agli bari kis ki hai?
-    changeTurn(board);
-}
-
-function changeTurn(board) {
-    const turns = ['red', 'green', 'yellow', 'blue'];
-    let nextIndex = (turns.indexOf(currentTurn) + 1) % 4;
-    currentTurn = turns[nextIndex];
-    
-    // Board ka border badal kar "Cursor" dikhana
-    board.style.borderColor = getHexColor(currentTurn);
-    console.log("Ab bari hai: " + currentTurn);
-}
-
-function getHexColor(player) {
-    const colors = { red: '#ff4757', green: '#2ed573', yellow: '#ffa502', blue: '#1e90ff' };
-    return colors[player];
+    let n = Math.floor(Math.random() * 6) + 1;
+    document.getElementById('result').innerHTML = "🎲 Number: " + n;
 }
