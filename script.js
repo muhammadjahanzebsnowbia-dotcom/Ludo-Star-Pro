@@ -171,5 +171,90 @@ document.getElementById('chat-in').addEventListener("keypress", function(event) 
         sendSultanMessage();
     }
 });
+// ==========================================
+// TOP GIFT SENDER & LIVE ANNOUNCEMENT
+// ==========================================
+
+// 1. Live Gift Banner (Screen ke upar chalne wali patti)
+function showGiftAnnouncement(senderName, giftName) {
+    let announcement = document.createElement('div');
+    announcement.style = `
+        position: fixed; top: 70px; left: 0; width: 100%; 
+        background: rgba(0, 0, 0, 0.8); color: gold; 
+        padding: 8px; text-align: center; z-index: 10000;
+        border-top: 1px solid gold; border-bottom: 1px solid gold;
+        font-weight: bold; font-size: 14px; animation: fadeInOut 4s forwards;
+    `;
+    announcement.innerHTML = `👑 SULTAN NEWS: <span style="color:white;">${senderName}</span> sent a <span style="color:#00ff00;">${giftName}</span>! 🎁`;
+    document.body.appendChild(announcement);
+
+    // 4 second baad khud hat jaye
+    setTimeout(() => { announcement.remove(); }, 4000);
+}
+
+// 2. Top Senders List (Gifting Panel ke neeche show hoga)
+let topSenders = [
+    {name: "Commander", points: 5500},
+    {name: "Ali King", points: 3200},
+    {name: "Maher", points: 1200}
+];
+
+function updateLeaderboard() {
+    let boardHTML = `<div style="padding:10px; background:rgba(255,215,0,0.1); border-radius:10px; margin-top:10px;">
+        <h5 style="color:gold; margin:0 0 10px 0; text-align:center;">🏆 TOP GIFT SENDERS</h5>`;
+    
+    // Sort senders by points
+    topSenders.sort((a, b) => b.points - a.points);
+
+    topSenders.slice(0, 3).forEach((sender, index) => {
+        boardHTML += `
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px; border-bottom:1px solid #333;">
+                <span>${index + 1}. ${sender.name}</span>
+                <span style="color:gold;">${sender.points} pts</span>
+            </div>`;
+    });
+    
+    boardHTML += `</div>`;
+    
+    // Ise Chat box ke neeche ya Gifting panel mein kahin bhi dikha sakte hain
+    let chatBox = document.getElementById('chat-box');
+    if(chatBox) {
+        let oldBoard = document.getElementById('sender-board');
+        if(oldBoard) oldBoard.remove();
+        
+        let boardDiv = document.createElement('div');
+        boardDiv.id = "sender-board";
+        boardDiv.innerHTML = boardHTML;
+        chatBox.parentNode.insertBefore(boardDiv, chatBox.nextSibling);
+    }
+}
+
+// 3. Jab koi Gift bheje toh ye function call ho
+function onGiftSent(giftName, points) {
+    let sender = "You"; // Baad mein login name se replace hoga
+    totalGiftingPoints += points;
+    
+    // Update local list for demo
+    topSenders.push({name: sender, points: totalGiftingPoints});
+    
+    showGiftAnnouncement(sender, giftName);
+    updateLeaderboard();
+}
+
+// Check for fade animation
+const style = document.createElement('style');
+style.innerHTML = `
+    @keyframes fadeInOut {
+        0% { opacity: 0; transform: translateY(-20px); }
+        15% { opacity: 1; transform: translateY(0); }
+        85% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-20px); }
+    }
+`;
+document.head.appendChild(style);
+
+// Shuru mein leaderboard dikha dein
+updateLeaderboard();
+
 
 
