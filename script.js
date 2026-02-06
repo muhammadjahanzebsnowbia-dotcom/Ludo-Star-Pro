@@ -312,6 +312,54 @@ document.head.appendChild(style);
 
 // Shuru mein leaderboard dikha dein
 updateLeaderboard();
+// ==========================================
+// OFFICIALS ONLY: CLUB LEVEL BOOSTER
+// ==========================================
+
+// 1. Check karein ke kya banda "Official" hai?
+// Note: Real game mein ye ID database se match hogi
+let currentUserRole = "OFFICIAL"; // Agar aam banda ho to "USER" likh dein
+
+function officialLevelBoost() {
+    if (currentUserRole !== "OFFICIAL") {
+        alert("🚨 ACCESS DENIED: Yeh taqat sirf Ludo Sultan Officials ke paas hai!");
+        return;
+    }
+
+    let confirmBoost = confirm("👑 SULTAN POWER: Kya aap is Club ka Level foran UP karna chahte hain?");
+    
+    if (confirmBoost) {
+        // Club level logic
+        let currentLevel = 15; // Example level
+        let newLevel = currentLevel + 1;
+        
+        // UI Update
+        alert("🚀 BOOSTED! Club Level automatically upgrade ho gaya: LVL " + newLevel);
+        
+        // Yahan Announcement chala dein
+        showGiftAnnouncement("SYSTEM", "CLUB LEVEL BOOSTED BY OFFICIAL 👑");
+        
+        // Leaderboard refresh karein
+        updateLeaderboard();
+    }
+}
+
+// 2. Official Button (Jo sirf officials ko dikhega)
+function showOfficialTools() {
+    if (currentUserRole === "OFFICIAL") {
+        let toolDiv = document.createElement('div');
+        toolDiv.style = "position:fixed; bottom:80px; right:10px; z-index:10001;";
+        toolDiv.innerHTML = `
+            <button onclick="officialLevelBoost()" style="background:linear-gradient(gold, orange); border:2px solid white; border-radius:50%; width:60px; height:60px; font-size:10px; font-weight:bold; cursor:pointer; box-shadow:0 0 10px gold;">
+                LEVEL<br>UP
+            </button>
+        `;
+        document.body.appendChild(toolDiv);
+    }
+}
+
+// Check karein aur button dikhayein
+showOfficialTools();
 
 
 
