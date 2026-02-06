@@ -326,6 +326,46 @@ function updateProfileUI() {
     // Level dikhane ke liye
     console.log("Current Level: " + userData.level);
 }
+// ==========================================
+// LOBBY TO GAME ENGINE
+// ==========================================
+
+function startGame(playerMode) {
+    let lobby = document.getElementById('main-lobby');
+    
+    // 1. Loading Screen dikhana
+    lobby.innerHTML = `
+        <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; background:#120512;">
+            <div class="game-loader"></div>
+            <h3 style="color:gold; font-family:sans-serif;">Finding ${playerMode} Players...</h3>
+            <p style="color:#aaa; font-size:12px;">Joining Maher ka Dera Table</p>
+        </div>
+    `;
+
+    // 2. 2.5 seconds baad Board aur Audio Room on karna
+    setTimeout(() => {
+        // Lobby ko mukammal khatam karna
+        lobby.style.display = 'none';
+        
+        // Board aur Party Room ko dikhana
+        const board = document.getElementById('ludo-container');
+        const room = document.getElementById('ludo-party-room');
+        
+        if(board) board.style.display = 'block';
+        if(room) room.style.display = 'block';
+        
+        // Smooth entry animation dena
+        board.classList.add('fade-in');
+        
+        console.log("Match Started: " + playerMode + " Players mode.");
+        alert("Match Started! Good Luck.");
+    }, 2500);
+}
+
+// Home button par click karke Lobby wapas lane ke liye (Optional)
+function backToLobby() {
+    location.reload(); // Sabse asan tarika reset karne ka
+}
 
 
 
