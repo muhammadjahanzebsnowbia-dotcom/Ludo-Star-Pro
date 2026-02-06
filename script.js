@@ -252,6 +252,47 @@ function checkBanStatus() {
 
 // Ise sabse pehle chalana hai
 checkBanStatus();
+// ==========================================
+// STORE, SECURITY & ADMIN LOGIC
+// ==========================================
+
+let coins = 0;
+let diamonds = 0;
+const officialMembers = ["admin_muhammad", "owner_muhammad"]; // Aapki ID yahan ayegi
+
+// 1. Store & Payment Logic
+function openPayment(d, c, p) {
+    let confirmPay = confirm("Order: Rs. " + p + "\nKya aap payment karke screenshot bhejenge?");
+    if(confirmPay) {
+        window.open("https://wa.me/923001234567?text=Payment Done for " + d + " Diamonds", "_blank");
+        alert("Payment ke baad admin ko screenshot bhejien!");
+    }
+}
+
+// 2. Official Badge & Admin Recognition
+function checkOfficialStatus(userId) {
+    if(officialMembers.includes(userId)) {
+        console.log("Welcome Admin Muhammad!");
+        // UI par badge dikhane ka logic yahan ayega
+    }
+}
+
+// 3. Abuse Filter & Device Ban
+const badWords = ["gali1", "gali2"]; // Yahan asli galiyan add karein
+
+function checkAbuse(message) {
+    let hasAbuse = badWords.some(word => message.toLowerCase().includes(word));
+    if(hasAbuse) {
+        alert("Gali dena mana hai! Teesri baar par Device BAN ho jayega.");
+        // Device Ban ka logic
+        // localStorage.setItem('isBanned', 'true');
+    }
+}
+
+// 4. Initial Check
+if(localStorage.getItem('isBanned') === 'true') {
+    document.body.innerHTML = "<h1 style='color:red; text-align:center;'>DEVICE PERMANENTLY BANNED</h1>";
+}
 
 
 
