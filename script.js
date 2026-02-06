@@ -182,4 +182,33 @@ function processPurchase(item, price) {
         document.getElementById('showroom-menu').style.display = 'none';
     }
 }
+let currentOrder = null;
+let coins = 0;
+let diamonds = 0;
+
+// Store kholne ka function
+function openStore() {
+    document.getElementById('mega-store').style.display = 'block';
+}
+
+// Payment window kholna
+function openPayment(d, c, p) {
+    currentOrder = { diamonds: d, coins: c, price: p };
+    document.getElementById('pay-details').innerHTML = "Total Amount: Rs. " + p.toLocaleString() + "<br>Number: 03XX-XXXXXXX"; // 👈 Apna Number yahan likhen
+    document.getElementById('pay-popup').style.display = 'block';
+}
+
+// Payment complete hone par (Screenshot bhejne ke liye WhatsApp par redirect)
+function finishPayment() {
+    let whatsappMsg = "Hello Admin, Maine Rs." + currentOrder.price + " send kar diye hain " + currentOrder.diamonds + " Diamonds ke liye. Screenshot attach hai.";
+    let waURL = "https://wa.me/923001234567?text=" + encodeURIComponent(whatsappMsg); // 👈 Apna Number yahan likhen
+    
+    window.open(waURL, '_blank');
+    
+    document.getElementById('pay-popup').style.display = 'none';
+    document.getElementById('mega-store').style.display = 'none';
+    
+    alert("Shukriya! Screenshot milte hi Diamonds add kar diye jayenge.");
+}
+
 
