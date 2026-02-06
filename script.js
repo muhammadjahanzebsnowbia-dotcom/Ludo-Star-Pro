@@ -210,5 +210,26 @@ function finishPayment() {
     
     alert("Shukriya! Screenshot milte hi Diamonds add kar diye jayenge.");
 }
+// Galiyon ki list (Aap mazeed lafz add kar sakte hain)
+const badWords = ["gali1", "gali2", "abuse1", "badword"]; 
+let abuseCount = {}; // Har user ki galtiyan count karne ke liye
+
+function checkMessage(userId, message) {
+    let msg = message.toLowerCase();
+    let hasAbuse = badWords.some(word => msg.includes(word));
+
+    if (hasAbuse) {
+        if (!abuseCount[userId]) abuseCount[userId] = 0;
+        abuseCount[userId]++;
+
+        if (abuseCount[userId] >= 3) {
+            banDevicePermanent(userId); // 3 dafa gali di toh Seedha BAN!
+            return "Aapka Device permanent ban kar diya gaya hai.";
+        }
+        return "Warning: Gali dena mana hai! (Warning " + abuseCount[userId] + "/3)";
+    }
+    return message;
+}
+
 
 
