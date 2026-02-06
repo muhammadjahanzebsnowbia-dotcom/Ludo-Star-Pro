@@ -3,23 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ludo Star Pro</title>
+    <title>Ludo Star Pro - Rooms</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="room-box" style="text-align:center; background:#111; padding:15px; border-bottom:3px solid gold;">
+        <h3 style="color:gold; margin:0;">LUDO MULTIPLAYER</h3>
+        <input type="text" id="roomId" placeholder="Enter Room Code" style="margin:10px; padding:5px;">
+        <button onclick="createRoom()" style="background:gold; font-weight:bold; padding:5px 15px;">JOIN ROOM</button>
+        <p id="status" style="color:white; font-size:12px;">Status: Offline</p>
+    </div>
+
     <div class="game-container">
-        <h1 style="color: gold; text-align: center;">LUDO STAR PRO</h1>
-        <div class="ludo-board">
+        <div class="ludo-board" id="ludo-board" style="border: 8px solid gold; margin: 20px auto; transition: 0.3s;">
             <div class="house red"></div>
             <div class="house green"></div>
             <div class="house yellow"></div>
             <div class="house blue"></div>
-            <div class="center-square">WIN</div>
+            <div class="center-square">LUDO</div>
         </div>
-        <div class="dice-section">
+        
+        <div class="dice-section" style="text-align:center;">
             <button id="dice-btn" onclick="roll()">🎲 ROLL</button>
-            <p id="result" style="color: white;"></p>
+            <p id="result" style="color:white; font-size:18px;"></p>
         </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
