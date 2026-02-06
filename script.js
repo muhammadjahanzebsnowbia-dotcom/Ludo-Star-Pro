@@ -230,6 +230,29 @@ function checkMessage(userId, message) {
     }
     return message;
 }
+// Device Ban karne ka function
+function banDevicePermanent(userId) {
+    // Device ki memory mein ban save karna
+    localStorage.setItem('isBanned', 'true');
+    localStorage.setItem('banReason', 'Abusing in Chat');
+    
+    alert("SYSTEM ALERT: Aapko bad-tameezi ki wajah se is game se permanent ban kar diya gaya hai. Ab aap is mobile par game nahi khel sakte.");
+    
+    // Game ko band kar dena ya screen white kar dena
+    document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:100px;'>DEVICE BANNED PERMANENTLY</h1><p style='text-align:center;'>Reason: Abusing and Violating Community Rules.</p>";
+}
+
+// Game load hote hi check karna ke kya ye mobile ban hai?
+function checkBanStatus() {
+    if (localStorage.getItem('isBanned') === 'true') {
+        document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:100px;'>DEVICE BANNED</h1>";
+        window.stop(); // Game load hone se rok dena
+    }
+}
+
+// Ise sabse pehle chalana hai
+checkBanStatus();
+
 
 
 
