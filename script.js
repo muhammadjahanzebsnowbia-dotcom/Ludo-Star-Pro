@@ -28,6 +28,15 @@ function createRoom() {
         document.getElementById('game-area').style.display = 'block';
         document.getElementById('result').innerHTML = "Status: Connected to Room " + id;
     }
+    // script.js ki aakhri line ke niche ye copy-paste karein
+function openClub() {
+    let clubName = prompt("Club ka naam likhein:");
+    if(clubName) {
+        document.getElementById('status').innerHTML = "Status: Joined Club " + clubName;
+        alert(clubName + " ke Audio Room mein aapka swagat hai! (Mic Connecting...)");
+    }
+}
+    
 }
 
 // 5. Gitta (Dice) Roll karna
