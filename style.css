@@ -1,0 +1,34 @@
+body {
+    background-color: #1a1a2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.ludo-board {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    width: 340px;
+    height: 340px;
+    background-color: white;
+    border: 5px solid #ffd700;
+}
+
+.house { border: 1px solid #ddd; }
+.red { grid-area: 1/1/7/7; background-color: #ff4757; }
+.green { grid-area: 1/10/7/16; background-color: #2ed573; }
+.yellow { grid-area: 10/1/16/7; background-color: #ffa502; }
+.blue { grid-area: 10/10/16/16; background-color: #1e90ff; }
+
+.center-square {
+    grid-area: 7/7/10/10;
+    background: gold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    font-weight: bold;
+}
