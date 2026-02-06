@@ -90,6 +90,63 @@ function applySultanDiscount() {
             "p2": "Rs. 5,200", // 6,500 ka 20% off
             "p3": "Rs. 52,000" // 65,000 ka 20% off
         };
+        // ==========================================
+// MONTHLY TOP SULTANS (LEADERBOARD)
+// ==========================================
+
+function showMonthlyLeaderboard() {
+    // Demo Data (Real data Firebase se aayega)
+    const monthlyTop = [
+        { name: "Sultan Malik", points: "1.2M", rank: 1, avatar: "👑" },
+        { name: "Maher King", points: "950K", rank: 2, avatar: "🥈" },
+        { name: "Don No.1", points: "800K", rank: 3, avatar: "🥉" }
+    ];
+
+    let monthlyHTML = `
+        <div id="monthly-board" style="background: linear-gradient(180deg, #2d0a2d, #000); padding: 20px; border-radius: 20px; border: 2px solid gold; margin-top: 20px; font-family: sans-serif;">
+            <h3 style="color: gold; text-align: center; margin-bottom: 20px; text-shadow: 0 0 10px gold;">🏆 MONTHLY TOP SELLERS</h3>
+            
+            <div style="display: flex; justify-content: space-around; align-items: flex-end; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #444;">
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 30px;">🥈</div>
+                    <div style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #ccc; background: #333; margin: 0 auto;"></div>
+                    <small style="color: #ccc; display: block;">${monthlyTop[1].name}</small>
+                    <b style="color: #00ff00; font-size: 10px;">${monthlyTop[1].points}</b>
+                </div>
+
+                <div style="text-align: center; transform: scale(1.2);">
+                    <div style="font-size: 40px; margin-bottom: -10px;">👑</div>
+                    <div style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid gold; background: #444; margin: 0 auto; box-shadow: 0 0 15px gold;"></div>
+                    <small style="color: gold; font-weight: bold; display: block;">${monthlyTop[0].name}</small>
+                    <b style="color: #00ff00; font-size: 10px;">${monthlyTop[0].points}</b>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="font-size: 30px;">🥉</div>
+                    <div style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #cd7f32; background: #333; margin: 0 auto;"></div>
+                    <small style="color: #cd7f32; display: block;">${monthlyTop[2].name}</small>
+                    <b style="color: #00ff00; font-size: 10px;">${monthlyTop[2].points}</b>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 11px; color: #888;">Rewards will be sent on the 1st of next month!</p>
+        </div>
+    `;
+
+    // Is board ko Court (Party Room) ke end mein chipka dein
+    let room = document.querySelector('.party-room');
+    if(room) {
+        let existing = document.getElementById('monthly-board');
+        if(existing) existing.remove();
+        room.insertAdjacentHTML('beforeend', monthlyHTML);
+    }
+}
+
+// Har 1 min baad board refresh karein
+setInterval(showMonthlyLeaderboard, 60000);
+showMonthlyLeaderboard();
+        
 
         // Screen par prices badalne ka system
         // Note: Ye tab kaam karega jab aapke price elements ki IDs ye hongi
