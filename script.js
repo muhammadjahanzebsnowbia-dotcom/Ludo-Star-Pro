@@ -68,3 +68,49 @@ function roll() {
     let n = Math.floor(Math.random() * 6) + 1;
     document.getElementById('result').innerHTML = "🎲 Number: " + n;
 }
+let userLevel = 1;
+let coins = 5000;
+
+// Club button dabane par Gifting aur Audio dono khulenge
+function openClub() {
+    document.getElementById('gift-panel').style.display = 'block';
+    document.getElementById('audio-room').style.display = 'block';
+    
+    setupMics(); // Mics load karne ke liye
+}
+
+function setupMics() {
+    let micContainer = document.getElementById('mic-container');
+    micContainer.innerHTML = ""; 
+
+    // Level 1-10 tak 5 mics, Level 11+ par 10 mics
+    let totalMics = (userLevel >= 11) ? 10 : 5;
+
+    for (let i = 1; i <= 10; i++) {
+        let isUnlocked = (i <= totalMics);
+        let micBtn = document.createElement("button");
+        micBtn.innerHTML = (isUnlocked ? "🎙️" : "🔒") + "<br>Mic " + i;
+        micBtn.style.background = isUnlocked ? "#2ed573" : "#444";
+        micBtn.style.color = "white";
+        micBtn.style.margin = "3px";
+        micBtn.style.padding = "5px";
+        micBtn.style.borderRadius = "5px";
+
+        micBtn.onclick = function() {
+            if (isUnlocked) alert("Mic " + i + " Active!");
+            else alert("🔒 Level 11 par unlock hoga!");
+        };
+        micContainer.appendChild(micBtn);
+    }
+}
+
+function sendGift(gift, cost) {
+    if (coins >= cost) {
+        coins -= cost;
+        document.getElementById('user-coins').innerHTML = "Coins: " + coins;
+        alert(gift + " Gift bhej diya!");
+    } else {
+        alert("Coins kam hain!");
+    }
+}
+
