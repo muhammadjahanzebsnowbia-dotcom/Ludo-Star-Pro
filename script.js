@@ -72,4 +72,54 @@ if (localStorage.getItem('isBanned') === 'true') {
     `;
 }
 
-console.log("Ludo Sultan System Loaded Successfully.");
+console.log("Ludo Sultan System Loaded Successfully."); 
+// ==========================================
+// NEW USER 20% DISCOUNT LOGIC (APPEND TO END)
+// ==========================================
+
+function applySultanDiscount() {
+    // Check karein kya user ne pehle khareedari ki hai
+    let isNewUser = localStorage.getItem('sultan_customer') === null;
+
+    if (isNewUser) {
+        console.log("Welcome Sultan! New User Discount Applied.");
+        
+        // 20% Discounted Prices ka data
+        const discountedPrices = {
+            "p1": "Rs. 280",   // 350 ka 20% off
+            "p2": "Rs. 5,200", // 6,500 ka 20% off
+            "p3": "Rs. 52,000" // 65,000 ka 20% off
+        };
+
+        // Screen par prices badalne ka system
+        // Note: Ye tab kaam karega jab aapke price elements ki IDs ye hongi
+        if(document.getElementById('price-500')) {
+            document.getElementById('price-500').innerHTML = `<span style="text-decoration:line-through; color:red; font-size:10px;">Rs.350</span> ${discountedPrices.p1}`;
+        }
+        if(document.getElementById('price-6500')) {
+            document.getElementById('price-6500').innerHTML = `<span style="text-decoration:line-through; color:red; font-size:10px;">Rs.6500</span> ${discountedPrices.p2}`;
+        }
+        if(document.getElementById('price-65000')) {
+            document.getElementById('price-65000').innerHTML = `<span style="text-decoration:line-through; color:red; font-size:10px;">Rs.65000</span> ${discountedPrices.p3}`;
+        }
+        
+        // Ek chota banner dikhane ke liye
+        let banner = document.createElement('div');
+        banner.style = "background:red; color:white; text-align:center; font-size:12px; padding:5px; font-weight:bold;";
+        banner.innerText = "✨ NEW SULTAN OFFER: 20% DISCOUNT APPLIED! ✨";
+        document.body.prepend(banner);
+    }
+}
+
+// Purchase mukammal hone par ye function call karein taaki discount khatam ho jaye
+function finalizePurchase() {
+    localStorage.setItem('sultan_customer', 'true');
+    alert("Purchase Successful! Agli baar prices normal honge.");
+    location.reload();
+}
+
+// Game load hotay hi discount check karein
+window.onload = function() {
+    applySultanDiscount();
+};
+
