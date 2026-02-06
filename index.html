@@ -193,7 +193,39 @@
         <div class="gift-box" onclick="processGift(3333)">👑 <br> <small>💚 3333</small></div>
         <div class="gift-box" onclick="processGift(49000)">🦁 <br> <small>💚 49K</small></div>
         <div class="gift-box" onclick="processGift(300)">🍗 <br> <small>💚 300</small
-                                                                                
+       <style>
+    /* Game shuru hone se pehle Board chhupa rahega */
+    #ludo-container, #ludo-party-room {
+        display: none;
+    }
+
+    /* Professional Loading Spinner */
+    .game-loader {
+        border: 6px solid rgba(255, 255, 255, 0.1);
+        border-top: 6px solid #FFD700;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin-loading 0.8s linear infinite;
+        margin-bottom: 15px;
+    }
+
+    @keyframes spin-loading {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Smooth Fade-in effect */
+    .fade-in {
+        animation: fadeInEffect 1s;
+    }
+
+    @keyframes fadeInEffect {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+       </style>
+            
         
                                     
 
